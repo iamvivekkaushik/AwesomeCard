@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:awesome_card/awesome_card.dart';
+import 'package:awesome_card/extra/helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreditCard extends StatefulWidget {
@@ -8,13 +11,15 @@ class CreditCard extends StatefulWidget {
   final Widget backBackground;
   final Widget frontLayout;
   final Widget backLayout;
+  final bool showShadow;
 
   CreditCard(
       {this.showBackSide = false,
       @required this.frontBackground,
       @required this.backBackground,
-      @required this.frontLayout,
-      @required this.backLayout});
+      this.frontLayout,
+      this.backLayout,
+      this.showShadow = false});
 
   @override
   _CreditCardState createState() => _CreditCardState();
@@ -97,6 +102,17 @@ class _CreditCardState extends State<CreditCard>
       margin: EdgeInsets.symmetric(horizontal: 20),
       width: cardWidth,
       height: cardHeight,
+      decoration: BoxDecoration(
+        boxShadow: widget.showShadow ? [
+          BoxShadow(color: Colors.black,
+            blurRadius: 12.0,
+            spreadRadius: 0.2,
+            offset: Offset(
+              3.0, // horizontal, move right 10
+              3.0, // vertical, move down 10
+            ),)
+        ] : [],
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Stack(
@@ -104,37 +120,16 @@ class _CreditCardState extends State<CreditCard>
             // Background for card
             widget.frontBackground,
 
-            // Front Card Text Alignment
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Axis Bank",
-                        style: TextStyle(
-                            color: Colors.white, fontSize: 16),
-                      ),
-
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: new Image.asset('images/contactless_icon.png', width: 70.0, height: 50.0),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
+            // Front Side Layout
+            CardFrontLayout(
+                    bankName: "Axis Bank",
+                    cardNumber: "1234  4345  2344  3423",
+                    cardExpiry: "11/22",
+                    cardHolderName: "Vivek Kumar",
+                    cardTypeIcon: getCardTypeIcon(""),
+                    cardHeight: cardHeight,
+                    cardWidth: cardWidth)
+                .layout1(),
           ],
         ),
       ),
@@ -146,12 +141,40 @@ class _CreditCardState extends State<CreditCard>
       margin: EdgeInsets.symmetric(horizontal: 20),
       width: cardWidth,
       height: cardHeight,
+      decoration: BoxDecoration(
+        boxShadow: widget.showShadow ? [
+          BoxShadow(color: Colors.black45,
+            blurRadius: 12.0,
+            spreadRadius: 0.2,
+            offset: Offset(
+              3.0, // horizontal, move right 10
+              3.0, // vertical, move down 10
+            ),)
+        ] : [],
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Stack(
           children: <Widget>[
             // Background for card
             widget.backBackground,
+
+            // Back Side Layout
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 30,
+                ),
+
+                Container(
+                  color: Colors.black,
+                  height: 50,
+                  width: cardWidth,
+                )
+              ],
+            )
           ],
         ),
       ),
