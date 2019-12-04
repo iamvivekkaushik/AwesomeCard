@@ -6,6 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreditCard extends StatefulWidget {
+  final String cardNumber;
+  final String cardExpiry;
+  final String cardHolderName;
+  final String bankName;
+  final String cvv;
+  final Color frontTextColor;
+  final Color backTextColor;
   final bool showBackSide;
   final Widget frontBackground;
   final Widget backBackground;
@@ -13,13 +20,24 @@ class CreditCard extends StatefulWidget {
   final Widget backLayout;
   final bool showShadow;
 
-  CreditCard(
-      {this.showBackSide = false,
-      @required this.frontBackground,
-      @required this.backBackground,
-      this.frontLayout,
-      this.backLayout,
-      this.showShadow = false});
+  CreditCard({
+    Key key,
+    this.cardNumber,
+    this.cardExpiry,
+    this.cardHolderName,
+    this.bankName = "",
+    this.cvv,
+    this.showBackSide = false,
+    @required this.frontBackground,
+    @required this.backBackground,
+    this.frontLayout,
+    this.backLayout,
+    this.frontTextColor = Colors.white,
+    this.backTextColor = Colors.black,
+    this.showShadow = false
+  }) : assert(frontBackground != null),
+        assert(backBackground != null),
+        super(key: key);
 
   @override
   _CreditCardState createState() => _CreditCardState();
@@ -103,15 +121,19 @@ class _CreditCardState extends State<CreditCard>
       width: cardWidth,
       height: cardHeight,
       decoration: BoxDecoration(
-        boxShadow: widget.showShadow ? [
-          BoxShadow(color: Colors.black,
-            blurRadius: 12.0,
-            spreadRadius: 0.2,
-            offset: Offset(
-              3.0, // horizontal, move right 10
-              3.0, // vertical, move down 10
-            ),)
-        ] : [],
+        boxShadow: widget.showShadow
+            ? [
+                BoxShadow(
+                  color: Colors.black,
+                  blurRadius: 12.0,
+                  spreadRadius: 0.2,
+                  offset: Offset(
+                    3.0, // horizontal, move right 10
+                    3.0, // vertical, move down 10
+                  ),
+                )
+              ]
+            : [],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
@@ -121,14 +143,15 @@ class _CreditCardState extends State<CreditCard>
             widget.frontBackground,
 
             // Front Side Layout
-            CardFrontLayout(
-                    bankName: "Axis Bank",
-                    cardNumber: "1234  4345  2344  3423",
-                    cardExpiry: "11/22",
-                    cardHolderName: "Vivek Kumar",
-                    cardTypeIcon: getCardTypeIcon(""),
+            widget.frontLayout ?? CardFrontLayout(
+                    bankName: widget.bankName,
+                    cardNumber: widget.cardNumber,
+                    cardExpiry: widget.cardExpiry,
+                    cardHolderName: widget.cardHolderName,
+                    cardTypeIcon: getCardTypeIcon(widget.cardNumber),
                     cardHeight: cardHeight,
-                    cardWidth: cardWidth)
+                    cardWidth: cardWidth,
+                    textColor: widget.frontTextColor)
                 .layout1(),
           ],
         ),
@@ -142,15 +165,19 @@ class _CreditCardState extends State<CreditCard>
       width: cardWidth,
       height: cardHeight,
       decoration: BoxDecoration(
-        boxShadow: widget.showShadow ? [
-          BoxShadow(color: Colors.black45,
-            blurRadius: 12.0,
-            spreadRadius: 0.2,
-            offset: Offset(
-              3.0, // horizontal, move right 10
-              3.0, // vertical, move down 10
-            ),)
-        ] : [],
+        boxShadow: widget.showShadow
+            ? [
+                BoxShadow(
+                  color: Colors.black45,
+                  blurRadius: 12.0,
+                  spreadRadius: 0.2,
+                  offset: Offset(
+                    3.0, // horizontal, move right 10
+                    3.0, // vertical, move down 10
+                  ),
+                )
+              ]
+            : [],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
@@ -160,14 +187,13 @@ class _CreditCardState extends State<CreditCard>
             widget.backBackground,
 
             // Back Side Layout
-            Column(
+            widget.backLayout ?? Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
                   height: 30,
                 ),
-
                 Container(
                   color: Colors.black,
                   height: 50,

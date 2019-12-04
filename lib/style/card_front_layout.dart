@@ -8,6 +8,7 @@ class CardFrontLayout {
   Widget cardTypeIcon;
   double cardWidth;
   double cardHeight;
+  Color textColor;
 
   CardFrontLayout(
       {this.bankName = "",
@@ -16,7 +17,8 @@ class CardFrontLayout {
       this.cardHolderName = "",
       this.cardTypeIcon,
       this.cardWidth = 0,
-      this.cardHeight = 0});
+      this.cardHeight = 0,
+      this.textColor});
 
   Widget layout1() {
     return Padding(
@@ -38,7 +40,7 @@ class CardFrontLayout {
                   child: Text(
                     bankName,
                     style: TextStyle(
-                        color: Colors.white,
+                        color: textColor,
                         fontSize: 17,
                         fontWeight: FontWeight.w500),
                   ),
@@ -52,7 +54,7 @@ class CardFrontLayout {
                     fit: BoxFit.fitHeight,
                     width: 30.0,
                     height: 30.0,
-                    color: Colors.white,
+                    color: textColor,
                     package: 'awesome_card',
                   ),
                 ),
@@ -67,10 +69,12 @@ class CardFrontLayout {
             child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  cardNumber,
+                  cardNumber == null || cardNumber.isEmpty
+                      ? 'XXXX XXXX XXXX XXXX'
+                      : cardNumber,
                   style: TextStyle(
                       package: 'awesome_card',
-                      color: Colors.white,
+                      color: textColor,
                       fontWeight: FontWeight.w500,
                       fontFamily: "MavenPro",
                       fontSize: 22),
@@ -95,7 +99,7 @@ class CardFrontLayout {
                         "Exp. Date",
                         style: TextStyle(
                             package: 'awesome_card',
-                            color: Colors.white,
+                            color: textColor,
                             fontFamily: "MavenPro",
                             fontSize: 15),
                       ),
@@ -103,10 +107,12 @@ class CardFrontLayout {
                         width: 10,
                       ),
                       Text(
-                        cardExpiry,
+                        cardExpiry == null || cardExpiry.isEmpty
+                            ? "MM/YY"
+                            : cardExpiry,
                         style: TextStyle(
                             package: 'awesome_card',
-                            color: Colors.white,
+                            color: textColor,
                             fontWeight: FontWeight.w500,
                             fontFamily: "MavenPro",
                             fontSize: 16),
@@ -117,10 +123,12 @@ class CardFrontLayout {
                     height: 15,
                   ),
                   Text(
-                    cardHolderName,
+                    cardHolderName == null || cardHolderName.isEmpty
+                        ? "Card Holder"
+                        : cardHolderName,
                     style: TextStyle(
                         package: 'awesome_card',
-                        color: Colors.white,
+                        color: textColor,
                         fontWeight: FontWeight.w500,
                         fontFamily: "MavenPro",
                         fontSize: 17),
