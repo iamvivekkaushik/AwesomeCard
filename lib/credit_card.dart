@@ -19,23 +19,27 @@ class CreditCard extends StatefulWidget {
   final Widget frontLayout;
   final Widget backLayout;
   final bool showShadow;
+  final double width;
+  final double height;
 
-  CreditCard({
-    Key key,
-    this.cardNumber,
-    this.cardExpiry,
-    this.cardHolderName,
-    this.bankName = "",
-    this.cvv,
-    this.showBackSide = false,
-    @required this.frontBackground,
-    @required this.backBackground,
-    this.frontLayout,
-    this.backLayout,
-    this.frontTextColor = Colors.white,
-    this.backTextColor = Colors.black,
-    this.showShadow = false
-  }) : assert(frontBackground != null),
+  CreditCard(
+      {Key key,
+      this.cardNumber,
+      this.cardExpiry,
+      this.cardHolderName,
+      this.bankName = "",
+      this.cvv,
+      this.showBackSide = false,
+      @required this.frontBackground,
+      @required this.backBackground,
+      this.frontLayout,
+      this.backLayout,
+      this.frontTextColor = Colors.white,
+      this.backTextColor = Colors.black,
+      this.showShadow = false,
+      this.width,
+      this.height})
+      : assert(frontBackground != null),
         assert(backBackground != null),
         super(key: key);
 
@@ -90,8 +94,12 @@ class _CreditCardState extends State<CreditCard>
 
   @override
   Widget build(BuildContext context) {
-    cardWidth = MediaQuery.of(context).size.width - 40;
-    cardHeight = (cardWidth / 2) + 10;
+    widget.width == null
+        ? cardWidth = MediaQuery.of(context).size.width - 40
+        : cardWidth = widget.width;
+    widget.height == null
+        ? cardHeight = (cardWidth / 2) + 10
+        : cardHeight = widget.height;
 
     if (widget.showBackSide) {
       _controller.forward().orCancel;
@@ -143,16 +151,17 @@ class _CreditCardState extends State<CreditCard>
             widget.frontBackground,
 
             // Front Side Layout
-            widget.frontLayout ?? CardFrontLayout(
-                    bankName: widget.bankName,
-                    cardNumber: widget.cardNumber,
-                    cardExpiry: widget.cardExpiry,
-                    cardHolderName: widget.cardHolderName,
-                    cardTypeIcon: getCardTypeIcon(widget.cardNumber),
-                    cardHeight: cardHeight,
-                    cardWidth: cardWidth,
-                    textColor: widget.frontTextColor)
-                .layout1(),
+            widget.frontLayout ??
+                CardFrontLayout(
+                        bankName: widget.bankName,
+                        cardNumber: widget.cardNumber,
+                        cardExpiry: widget.cardExpiry,
+                        cardHolderName: widget.cardHolderName,
+                        cardTypeIcon: getCardTypeIcon(widget.cardNumber),
+                        cardHeight: cardHeight,
+                        cardWidth: cardWidth,
+                        textColor: widget.frontTextColor)
+                    .layout1(),
           ],
         ),
       ),
@@ -187,20 +196,13 @@ class _CreditCardState extends State<CreditCard>
             widget.backBackground,
 
             // Back Side Layout
-            widget.backLayout ?? Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  color: Colors.black,
-                  height: 50,
-                  width: cardWidth,
-                )
-              ],
-            )
+            widget.backLayout ??
+                CardBackLayout(
+                        cvv: widget.cvv,
+                        width: cardWidth,
+                        height: cardHeight,
+                        color: widget.backTextColor)
+                    .layout1()
           ],
         ),
       ),

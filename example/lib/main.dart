@@ -76,62 +76,71 @@ class _MyHomePageState extends State<MyHomePage> {
             showShadow: true,
           ),
           SizedBox(
-            height: 80,
+            height: 40,
           ),
-          Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 20,
+
+          SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: TextFormField(
+                    decoration: InputDecoration(hintText: "Card Number"),
+                    maxLength: 19,
+                    onChanged: (value) {
+                      setState(() {
+                        cardNumber = value;
+                      });
+                    },
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: TextFormField(
+                    decoration: InputDecoration(hintText: "Card Expiry"),
+                    maxLength: 5,
+                    onChanged: (value) {
+                      setState(() {
+                        expiryDate = value;
+                      });
+                    },
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: TextFormField(
+                    decoration: InputDecoration(hintText: "Card Holder Name"),
+                    onChanged: (value) {
+                      setState(() {
+                        cardHolderName = value;
+                      });
+                    },
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                  child: TextFormField(
+                    decoration: InputDecoration(hintText: "CVV"),
+                    maxLength: 3,
+                    onChanged: (value) {
+                      setState(() {
+                        cvv = value;
+                      });
+                    },
+                    focusNode: _focusNode,
+                  ),
+                ),
+              ],
             ),
-            child: TextFormField(
-              decoration: InputDecoration(hintText: "Card Number"),
-              maxLength: 19,
-              onChanged: (value) {
-                setState(() {
-                  cardNumber = value;
-                });
-              },
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            child: TextFormField(
-              decoration: InputDecoration(hintText: "Card Expiry"),
-              maxLength: 5,
-              onChanged: (value) {
-                setState(() {
-                  expiryDate = value;
-                });
-              },
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            child: TextFormField(
-              decoration: InputDecoration(hintText: "Card Holder Name"),
-              onChanged: (value) {
-                setState(() {
-                  cardHolderName = value;
-                });
-              },
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-            child: TextFormField(
-              decoration: InputDecoration(hintText: "CVV"),
-              maxLength: 3,
-              onChanged: (value) {
-                setState(() {
-                  cvv = value;
-                });
-              },
-              focusNode: _focusNode,
-            ),
-          ),
+          )
         ],
       ),
     );
