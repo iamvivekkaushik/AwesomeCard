@@ -70,6 +70,7 @@ class CardFrontLayout {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     Column(
+                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[

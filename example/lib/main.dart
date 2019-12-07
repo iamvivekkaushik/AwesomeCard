@@ -57,30 +57,30 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 40,
-          ),
-          CreditCard(
-            cardNumber: cardNumber,
-            cardExpiry: expiryDate,
-            cardHolderName: cardHolderName,
-            cvv: cvv,
-            bankName: "Axis Bank",
-            showBackSide: showBack,
-            frontBackground: CardBackgrounds.black,
-            backBackground: CardBackgrounds.white,
-            showShadow: true,
-          ),
-          SizedBox(
-            height: 40,
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 40,
+            ),
+            CreditCard(
+              cardNumber: cardNumber,
+              cardExpiry: expiryDate,
+              cardHolderName: cardHolderName,
+              cvv: cvv,
+              bankName: "Axis Bank",
+              showBackSide: showBack,
+              frontBackground: CardBackgrounds.black,
+              backBackground: CardBackgrounds.white,
+              showShadow: true,
+            ),
+            SizedBox(
+              height: 40,
+            ),
 
-          SingleChildScrollView(
-            child: Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -139,9 +139,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ],
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
