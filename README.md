@@ -1,5 +1,5 @@
-<a href="https://github.com/Ramotion/folding-cell">
-<img align="left" src="https://github.com/iamvivekkaushik/AwesomeCard/blob/master/screenshot/card.gif" width="400" height="250" /></a>
+<a href="https://github.com/iamvivekkaushik/AwesomeCard">
+<img align="left" src="https://raw.githubusercontent.com/iamvivekkaushik/AwesomeCard/master/screenshot/card.gif" width="400" height="250" /></a>
 
 <p><h2 align="left">Awesome Card</h2></p>
 
@@ -11,14 +11,17 @@ ___
 
 <p><h6>Stay tuned for the latest updates:</h6>
 <a href="https://github.com/iamvivekkaushik" >
-<img src="https://github.com/iamvivekkaushik/AwesomeCard/blob/master/screenshot/github.png" width="220" height="40"></a></p>
+<img src="https://raw.githubusercontent.com/iamvivekkaushik/AwesomeCard/master/screenshot/github.png" width="220" height="40"></a></p>
 
 </br>
 
+[![Pub](https://img.shields.io/pub/v/awesome_card)](https://pub.dev/packages/awesome_card/versions/1.0.0)
+[![Twitter](https://img.shields.io/badge/Twitter-@vivek_kaushik_-blue.svg?style=flat)](https://twitter.com/vivek_kaushik_)
+
 ## 📱Screenshots
 <p align="center">
-<img src="https://github.com/iamvivekkaushik/AwesomeCard/blob/master/screenshot/front.png" width="300" height="630"/>
-<img src="https://github.com/iamvivekkaushik/AwesomeCard/blob/master/screenshot/back.png" width="300" height="630"/>
+<img src="https://raw.githubusercontent.com/iamvivekkaushik/AwesomeCard/master/screenshot/front.png" width="300" height="630"/>
+<img src="https://raw.githubusercontent.com/iamvivekkaushik/AwesomeCard/master/screenshot/back.png" width="300" height="630"/>
 </p>
 <br>
 
