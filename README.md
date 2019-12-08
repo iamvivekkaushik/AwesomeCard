@@ -17,8 +17,8 @@ ___
 
 ## 📱Screenshots
 <p align="center">
-<img src="https://github.com/iamvivekkaushik/AwesomeCard/blob/master/screenshot/front.png" width="300" height="600"/>
-<img src="https://github.com/iamvivekkaushik/AwesomeCard/blob/master/screenshot/back.png" width="300" height="600"/>
+<img src="https://github.com/iamvivekkaushik/AwesomeCard/blob/master/screenshot/front.png" width="300" height="630"/>
+<img src="https://github.com/iamvivekkaushik/AwesomeCard/blob/master/screenshot/back.png" width="300" height="630"/>
 </p>
 <br>
 
