@@ -19,6 +19,7 @@ class CreditCard extends StatefulWidget {
   final Widget frontLayout;
   final Widget backLayout;
   final bool showShadow;
+  final CardType cardType;
   final double width;
   final double height;
 
@@ -32,6 +33,7 @@ class CreditCard extends StatefulWidget {
       this.showBackSide = false,
       @required this.frontBackground,
       @required this.backBackground,
+      this.cardType,
       this.frontLayout,
       this.backLayout,
       this.frontTextColor = Colors.white,
@@ -157,7 +159,8 @@ class _CreditCardState extends State<CreditCard>
                         cardNumber: widget.cardNumber,
                         cardExpiry: widget.cardExpiry,
                         cardHolderName: widget.cardHolderName,
-                        cardTypeIcon: getCardTypeIcon(widget.cardNumber),
+                        cardTypeIcon: getCardTypeIcon(cardType: widget.cardType,
+                            cardNumber: widget.cardNumber),
                         cardHeight: cardHeight,
                         cardWidth: cardWidth,
                         textColor: widget.frontTextColor)

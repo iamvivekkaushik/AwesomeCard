@@ -15,7 +15,7 @@ ___
 
 </br>
 
-[![Pub](https://img.shields.io/pub/v/awesome_card)](https://pub.dev/packages/awesome_card/versions/1.0.0)
+[![Pub](https://img.shields.io/pub/v/awesome_card)](https://pub.dev/packages/awesome_card/versions/1.1.0)
 [![Twitter](https://img.shields.io/badge/Twitter-@vivek_kaushik_-blue.svg?style=flat)](https://twitter.com/vivek_kaushik_)
 
 ## 📱Screenshots
@@ -44,6 +44,7 @@ CreditCard(
     cardHolderName: "Card Holder",
     cvv: "456",
     bankName: "Axis Bank",
+    cardType: CardType.masterCard, // Optional if you want to override Card Type
     showBackSide: false,
     frontBackground: CardBackgrounds.black,
     backBackground: CardBackgrounds.white,

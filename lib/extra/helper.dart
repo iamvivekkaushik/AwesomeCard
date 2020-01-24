@@ -1,7 +1,8 @@
+import 'package:awesome_card/extra/card_type.dart';
 import 'package:flutter/material.dart';
 
-Widget getCardTypeIcon(String cardNumber) {
-  switch (getCardType(cardNumber)) {
+Widget getCardTypeIcon({CardType cardType, String cardNumber}) {
+  switch (cardType == null ? getCardType(cardNumber) : cardType) {
     case CardType.americanExpress:
       return Image.asset(
         "images/card_provider/american_express.png",
@@ -108,14 +109,4 @@ CardType getCardType(String cardNumber) {
   return CardType.other;
 }
 
-enum CardType {
-  americanExpress,
-  dinersClub,
-  discover,
-  jcb,
-  masterCard,
-  maestro,
-  rupay,
-  visa,
-  other
-}
+
