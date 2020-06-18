@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:awesome_card/awesome_card.dart';
+import 'package:awesome_card/extra/card_brand.dart';
 import 'package:awesome_card/extra/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 class CreditCard extends StatefulWidget {
   final String cardNumber;
   final String cardExpiry;
+  final String cardExpiryLabel;
   final String cardHolderName;
   final String bankName;
   final String cvv;
@@ -20,6 +22,7 @@ class CreditCard extends StatefulWidget {
   final Widget backLayout;
   final bool showShadow;
   final CardType cardType;
+  final List<CardBrand> otherCardBrands;
   final double width;
   final double height;
 
@@ -27,6 +30,7 @@ class CreditCard extends StatefulWidget {
       {Key key,
       this.cardNumber,
       this.cardExpiry,
+      this.cardExpiryLabel,
       this.cardHolderName,
       this.bankName = "",
       this.cvv,
@@ -40,7 +44,9 @@ class CreditCard extends StatefulWidget {
       this.backTextColor = Colors.black,
       this.showShadow = false,
       this.width,
-      this.height})
+      this.otherCardBrands,
+      this.height
+      })
       : assert(frontBackground != null),
         assert(backBackground != null),
         super(key: key);
@@ -158,9 +164,10 @@ class _CreditCardState extends State<CreditCard>
                         bankName: widget.bankName,
                         cardNumber: widget.cardNumber,
                         cardExpiry: widget.cardExpiry,
+                        cardExpiryLabel: widget.cardExpiryLabel,
                         cardHolderName: widget.cardHolderName,
                         cardTypeIcon: getCardTypeIcon(cardType: widget.cardType,
-                            cardNumber: widget.cardNumber),
+                            cardNumber: widget.cardNumber, otherCardBrands: widget.otherCardBrands),
                         cardHeight: cardHeight,
                         cardWidth: cardWidth,
                         textColor: widget.frontTextColor)

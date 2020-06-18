@@ -1,7 +1,13 @@
+import 'package:awesome_card/extra/card_brand.dart';
 import 'package:awesome_card/extra/card_type.dart';
 import 'package:flutter/material.dart';
 
-Widget getCardTypeIcon({CardType cardType, String cardNumber}) {
+Widget getCardTypeIcon({CardType cardType, String cardNumber, List<CardBrand> otherCardBrands}) {
+  
+  var icon = tryGetCustomCardTypeIcon(cardNumber: cardNumber, otherCardBrands: otherCardBrands);
+
+  if (icon != null) return icon;
+  
   switch (cardType == null ? getCardType(cardNumber) : cardType) {
     case CardType.americanExpress:
       return Image.asset(
@@ -64,6 +70,24 @@ Widget getCardTypeIcon({CardType cardType, String cardNumber}) {
   }
 }
 
+Widget tryGetCustomCardTypeIcon({String cardNumber, List<CardBrand> otherCardBrands}) {
+  CardBrand cardBrand = getCustomCardType(cardNumber, otherCardBrands);
+  
+  return cardBrand != null ? cardBrand.icon : null;
+}
+
+CardBrand getCustomCardType(String cardNumber, List<CardBrand> otherCardBrands) {
+   if (otherCardBrands == null) otherCardBrands = [];
+
+  var cardBrand = otherCardBrands.where((element) {
+   if(element.regex == null) return false;
+
+   return element.regex.hasMatch(cardNumber);
+  }).toList();
+
+  return cardBrand.isNotEmpty ? cardBrand.first : null;
+}
+
 CardType getCardType(String cardNumber) {
   RegExp rAmericanExpress = new RegExp(r"^3[47][0-9]{0,}$");
   RegExp rDinersClub = new RegExp(r"^3(?:0[0-59]{1}|[689])[0-9]{0,}$");
@@ -108,5 +132,3 @@ CardType getCardType(String cardNumber) {
 
   return CardType.other;
 }
-
-

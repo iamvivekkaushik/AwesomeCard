@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CardFrontLayout {
   String bankName;
   String cardNumber;
+  String cardExpiryLabel;
   String cardExpiry;
   String cardHolderName;
   Widget cardTypeIcon;
@@ -18,6 +19,7 @@ class CardFrontLayout {
       this.cardTypeIcon,
       this.cardWidth = 0,
       this.cardHeight = 0,
+      this.cardExpiryLabel = "Exp. Date",
       this.textColor});
 
   Widget layout1() {
@@ -93,7 +95,7 @@ class CardFrontLayout {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "Exp. Date",
+                              cardExpiryLabel,
                               style: TextStyle(
                                   package: 'awesome_card',
                                   color: textColor,
