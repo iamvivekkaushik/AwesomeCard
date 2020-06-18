@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:awesome_card/awesome_card.dart';
+import 'package:awesome_card/extra/card_brand.dart';
 import 'package:awesome_card/extra/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class CreditCard extends StatefulWidget {
   final Widget backLayout;
   final bool showShadow;
   final CardType cardType;
-  final List<Map<String,Object>> otherCardTypes;
+  final List<CardBrand> otherCardBrands;
   final double width;
   final double height;
 
@@ -43,7 +44,7 @@ class CreditCard extends StatefulWidget {
       this.backTextColor = Colors.black,
       this.showShadow = false,
       this.width,
-      this.otherCardTypes,
+      this.otherCardBrands,
       this.height
       })
       : assert(frontBackground != null),
@@ -166,7 +167,7 @@ class _CreditCardState extends State<CreditCard>
                         cardExpiryLabel: widget.cardExpiryLabel,
                         cardHolderName: widget.cardHolderName,
                         cardTypeIcon: getCardTypeIcon(cardType: widget.cardType,
-                            cardNumber: widget.cardNumber, otherCardTypes: widget.otherCardTypes ),
+                            cardNumber: widget.cardNumber, otherCardBrands: widget.otherCardBrands),
                         cardHeight: cardHeight,
                         cardWidth: cardWidth,
                         textColor: widget.frontTextColor)

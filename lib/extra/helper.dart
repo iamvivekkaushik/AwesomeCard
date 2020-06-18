@@ -1,9 +1,10 @@
+import 'package:awesome_card/extra/card_brand.dart';
 import 'package:awesome_card/extra/card_type.dart';
 import 'package:flutter/material.dart';
 
-Widget getCardTypeIcon({CardType cardType, String cardNumber, List<Map<String,Object>> otherCardTypes}) {
+Widget getCardTypeIcon({CardType cardType, String cardNumber, List<CardBrand> otherCardBrands}) {
   
-  var icon = tryGetCustomCardTypeIcon(cardNumber: cardNumber, otherCardTypes: otherCardTypes);
+  var icon = tryGetCustomCardTypeIcon(cardNumber: cardNumber, otherCardBrands: otherCardBrands);
 
   if (icon != null) return icon;
   
@@ -69,19 +70,22 @@ Widget getCardTypeIcon({CardType cardType, String cardNumber, List<Map<String,Ob
   }
 }
 
-Widget tryGetCustomCardTypeIcon({String cardNumber, List<Map<String,Object>> otherCardTypes}) {
-  var typ = getCustomCardType(cardNumber, otherCardTypes);
- 
-  return typ != null ? typ["icon"] : null;
+Widget tryGetCustomCardTypeIcon({String cardNumber, List<CardBrand> otherCardBrands}) {
+  CardBrand cardBrand = getCustomCardType(cardNumber, otherCardBrands);
+  
+  return cardBrand != null ? cardBrand.icon : null;
 }
 
-Map<String,Object> getCustomCardType(String cardNumber, List<Map<String,Object>> otherCardTypes) {
-   if (otherCardTypes == null) otherCardTypes = [];
+CardBrand getCustomCardType(String cardNumber, List<CardBrand> otherCardBrands) {
+   if (otherCardBrands == null) otherCardBrands = [];
 
-  var typ = otherCardTypes.where((element) => (element["regex"] as RegExp).hasMatch(cardNumber)).toList();
+  var cardBrand = otherCardBrands.where((element) {
+   if(element.regex == null) return false;
 
-  return typ.isNotEmpty ? typ.first : null;
+   return element.regex.hasMatch(cardNumber);
+  }).toList();
 
+  return cardBrand.isNotEmpty ? cardBrand.first : null;
 }
 
 CardType getCardType(String cardNumber) {
