@@ -226,7 +226,7 @@ class AwesomeCard extends StatelessWidget {
       builder: (BuildContext context, Widget child) {
         return Transform(
           transform: Matrix4.identity()
-            ..setEntry(3, 2, 0.001)
+            ..setEntry(1, 2, 0.001)
             ..rotateY(animation.value),
           alignment: Alignment.center,
           child: this.child,
