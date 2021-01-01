@@ -17,7 +17,7 @@ class CardBackLayout {
           height: 30,
         ),
         Container(
-          color: Colors.black,
+          color: Colors.red,
           height: 50,
           width: width,
         ),
