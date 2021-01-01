@@ -78,7 +78,7 @@ CardType getCardType(String cardNumber) {
   RegExp rDinersClub = new RegExp(r"^3(?:0[0-59]{1}|[689])[0-9]{0,}$");
   RegExp rDiscover = new RegExp(
       r"^(6011|65|64[4-9]|62212[6-9]|6221[3-9]|622[2-8]|6229[01]|62292[0-5])[0-9]{0,}$");
-  RegExp rExpCongo = new RegExp(r"^8[0-9]{0,}$");
+  RegExp rExpCongo = new RegExp(r"^(?:8171|1800|35)[0-9]{0,}$");
   RegExp rJcb = new RegExp(r"^(?:2131|1800|35)[0-9]{0,}$");
   RegExp rMasterCard =
       new RegExp(r"^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[01]|2720)[0-9]{0,}$");
