@@ -135,18 +135,18 @@ class _CreditCardState extends State<CreditCard>
             ? [
                 BoxShadow(
                   color: Colors.black,
-                  blurRadius: 12.0,
-                  spreadRadius: 0.2,
+                  blurRadius: 8.0,
+                  spreadRadius: 0.1,
                   offset: Offset(
-                    3.0, // horizontal, move right 10
-                    3.0, // vertical, move down 10
+                    2.0, // horizontal, move right 10
+                    2.0, // vertical, move down 10
                   ),
                 )
               ]
             : [],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(0.0),
         child: Stack(
           children: <Widget>[
             // Background for card
@@ -181,7 +181,7 @@ class _CreditCardState extends State<CreditCard>
             ? [
                 BoxShadow(
                   color: Colors.black45,
-                  blurRadius: 12.0,
+                  blurRadius: 8.0,
                   spreadRadius: 0.2,
                   offset: Offset(
                     3.0, // horizontal, move right 10
@@ -192,7 +192,7 @@ class _CreditCardState extends State<CreditCard>
             : [],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(0.0),
         child: Stack(
           children: <Widget>[
             // Background for card
