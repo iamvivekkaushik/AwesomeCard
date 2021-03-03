@@ -93,7 +93,7 @@ class CardFrontLayout {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "Validade",
+                              "Exp. Date",
                               style: TextStyle(
                                   package: 'awesome_card',
                                   color: textColor,
@@ -105,7 +105,7 @@ class CardFrontLayout {
                             ),
                             Text(
                               cardExpiry == null || cardExpiry!.isEmpty
-                                  ? "MM/AA"
+                                  ? "MM/YY"
                                   : cardExpiry!,
                               style: TextStyle(
                                   package: 'awesome_card',
@@ -121,7 +121,7 @@ class CardFrontLayout {
                         ),
                         Text(
                           cardHolderName == null || cardHolderName!.isEmpty
-                              ? "Nome do Titular"
+                              ? "Card Holder"
                               : cardHolderName!,
                           style: TextStyle(
                               package: 'awesome_card',
