@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class CardFrontLayout {
   String bankName;
-  String cardNumber;
-  String cardExpiry;
-  String cardHolderName;
-  Widget cardTypeIcon;
-  double cardWidth;
-  double cardHeight;
-  Color textColor;
+  String? cardNumber;
+  String? cardExpiry;
+  String? cardHolderName;
+  Widget? cardTypeIcon;
+  double? cardWidth;
+  double? cardHeight;
+  Color? textColor;
 
   CardFrontLayout(
       {this.bankName = "",
@@ -68,16 +68,16 @@ class CardFrontLayout {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
+                  children: (<Widget?>[
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          cardNumber == null || cardNumber.isEmpty
+                          cardNumber == null || cardNumber!.isEmpty
                               ? 'XXXX XXXX XXXX XXXX'
-                              : cardNumber,
+                              : cardNumber!,
                           style: TextStyle(
                               package: 'awesome_card',
                               color: textColor,
@@ -104,9 +104,9 @@ class CardFrontLayout {
                               width: 10,
                             ),
                             Text(
-                              cardExpiry == null || cardExpiry.isEmpty
+                              cardExpiry == null || cardExpiry!.isEmpty
                                   ? "MM/AA"
-                                  : cardExpiry,
+                                  : cardExpiry!,
                               style: TextStyle(
                                   package: 'awesome_card',
                                   color: textColor,
@@ -120,9 +120,9 @@ class CardFrontLayout {
                           height: 15,
                         ),
                         Text(
-                          cardHolderName == null || cardHolderName.isEmpty
+                          cardHolderName == null || cardHolderName!.isEmpty
                               ? "Nome do Titular"
-                              : cardHolderName,
+                              : cardHolderName!,
                           style: TextStyle(
                               package: 'awesome_card',
                               color: textColor,
@@ -133,7 +133,7 @@ class CardFrontLayout {
                       ],
                     ),
                     cardTypeIcon
-                  ],
+                  ]) as List<Widget>,
                 ),
               ),
             ),

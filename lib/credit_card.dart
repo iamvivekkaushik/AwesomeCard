@@ -6,33 +6,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreditCard extends StatefulWidget {
-  final String cardNumber;
-  final String cardExpiry;
-  final String cardHolderName;
+  final String? cardNumber;
+  final String? cardExpiry;
+  final String? cardHolderName;
   final String bankName;
-  final String cvv;
+  final String? cvv;
   final Color frontTextColor;
   final Color backTextColor;
   final bool showBackSide;
   final Widget frontBackground;
   final Widget backBackground;
-  final Widget frontLayout;
-  final Widget backLayout;
+  final Widget? frontLayout;
+  final Widget? backLayout;
   final bool showShadow;
-  final CardType cardType;
-  final double width;
-  final double height;
+  final CardType? cardType;
+  final double? width;
+  final double? height;
 
   CreditCard(
-      {Key key,
+      {Key? key,
       this.cardNumber,
       this.cardExpiry,
       this.cardHolderName,
       this.bankName = "",
       this.cvv,
       this.showBackSide = false,
-      @required this.frontBackground,
-      @required this.backBackground,
+      required this.frontBackground,
+      required this.backBackground,
       this.cardType,
       this.frontLayout,
       this.backLayout,
@@ -41,9 +41,7 @@ class CreditCard extends StatefulWidget {
       this.showShadow = false,
       this.width,
       this.height})
-      : assert(frontBackground != null),
-        assert(backBackground != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _CreditCardState createState() => _CreditCardState();
@@ -51,11 +49,11 @@ class CreditCard extends StatefulWidget {
 
 class _CreditCardState extends State<CreditCard>
     with SingleTickerProviderStateMixin {
-  double cardWidth;
-  double cardHeight;
-  AnimationController _controller;
-  Animation<double> _moveToBack;
-  Animation<double> _moveToFront;
+  double? cardWidth;
+  double? cardHeight;
+  late AnimationController _controller;
+  Animation<double>? _moveToBack;
+  Animation<double>? _moveToFront;
 
   @override
   void initState() {
@@ -100,7 +98,7 @@ class _CreditCardState extends State<CreditCard>
         ? cardWidth = MediaQuery.of(context).size.width - 40
         : cardWidth = widget.width;
     widget.height == null
-        ? cardHeight = (cardWidth / 2) + 10
+        ? cardHeight = (cardWidth! / 2) + 10
         : cardHeight = widget.height;
 
     if (widget.showBackSide) {
@@ -214,20 +212,20 @@ class _CreditCardState extends State<CreditCard>
 }
 
 class AwesomeCard extends StatelessWidget {
-  final Animation<double> animation;
+  final Animation<double>? animation;
   final Widget child;
 
-  AwesomeCard({@required this.animation, @required this.child});
+  AwesomeCard({required this.animation, required this.child});
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: animation,
-      builder: (BuildContext context, Widget child) {
+      animation: animation!,
+      builder: (BuildContext context, Widget? child) {
         return Transform(
           transform: Matrix4.identity()
             ..setEntry(3, 2, 0.001)
-            ..rotateY(animation.value),
+            ..rotateY(animation!.value),
           alignment: Alignment.center,
           child: this.child,
         );

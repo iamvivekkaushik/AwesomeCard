@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CardBackLayout {
-  String cvv;
-  double width;
-  double height;
-  Color color;
+  String? cvv;
+  double? width;
+  double? height;
+  Color? color;
 
   CardBackLayout({this.cvv, this.width, this.height, this.color});
 
@@ -29,13 +29,13 @@ class CardBackLayout {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              width: (width / 4) * 3,
+              width: (width! / 4) * 3,
               height: 50,
               color: Colors.grey,
             ),
             Container(
               height: 50,
-              width: width / 4,
+              width: width! / 4,
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
