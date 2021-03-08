@@ -28,7 +28,7 @@ class CreditCard extends StatefulWidget {
       this.cardNumber,
       this.cardExpiry,
       this.cardHolderName,
-      this.bankName = "",
+      this.bankName = '',
       this.cvv,
       this.showBackSide = false,
       required this.frontBackground,
@@ -57,10 +57,10 @@ class _CreditCardState extends State<CreditCard>
 
   @override
   void initState() {
-    _controller = new AnimationController(
-        duration: new Duration(milliseconds: 1000), vsync: this);
+    _controller = AnimationController(
+        duration: Duration(milliseconds: 1000), vsync: this);
 
-    _moveToBack = new TweenSequence<double>([
+    _moveToBack = TweenSequence<double>([
       TweenSequenceItem<double>(
           tween: Tween<double>(begin: 0.0, end: pi / 2)
               .chain(CurveTween(curve: Curves.easeInBack)),
@@ -69,7 +69,7 @@ class _CreditCardState extends State<CreditCard>
           tween: ConstantTween<double>(pi / 2), weight: 50.0)
     ]).animate(_controller);
 
-    _moveToFront = new TweenSequence<double>(
+    _moveToFront = TweenSequence<double>(
       [
         TweenSequenceItem<double>(
           tween: ConstantTween<double>(pi / 2),
@@ -146,7 +146,7 @@ class _CreditCardState extends State<CreditCard>
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Stack(
-          children: <Widget>[
+          children: [
             // Background for card
             widget.frontBackground,
 
@@ -157,7 +157,8 @@ class _CreditCardState extends State<CreditCard>
                         cardNumber: widget.cardNumber,
                         cardExpiry: widget.cardExpiry,
                         cardHolderName: widget.cardHolderName,
-                        cardTypeIcon: getCardTypeIcon(cardType: widget.cardType,
+                        cardTypeIcon: getCardTypeIcon(
+                            cardType: widget.cardType,
                             cardNumber: widget.cardNumber),
                         cardHeight: cardHeight,
                         cardWidth: cardWidth,

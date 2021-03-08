@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class CardBackgrounds {
   CardBackgrounds._();
 
-  static Widget black = new Container(
+  static Widget black = Container(
     width: double.maxFinite,
     height: double.maxFinite,
     color: Color(0xff0B0B0F),
   );
 
-  static Widget white = new Container(
+  static Widget white = Container(
     width: double.maxFinite,
     height: double.maxFinite,
     color: Color(0xffF9F9FA),
