@@ -10,11 +10,18 @@ class CardFrontLayout {
   double? cardHeight;
   Color? textColor;
 
+  String? textExpDate;
+  String? textName;
+  String? textExpiry;
+
   CardFrontLayout(
       {this.bankName = '',
       this.cardNumber = '',
       this.cardExpiry = '',
       this.cardHolderName = '',
+      this.textExpDate = 'Exp. Date',
+      this.textExpiry = 'MM/YY',
+      this.textName = 'Card Holder',
       this.cardTypeIcon,
       this.cardWidth = 0,
       this.cardHeight = 0,
@@ -93,7 +100,7 @@ class CardFrontLayout {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Validade',
+                                textExpDate!,
                                 style: TextStyle(
                                     package: 'awesome_card',
                                     color: textColor,
@@ -105,7 +112,7 @@ class CardFrontLayout {
                               ),
                               Text(
                                 cardExpiry == null || cardExpiry!.isEmpty
-                                    ? 'MM/AA'
+                                    ? textExpiry!
                                     : cardExpiry!,
                                 style: TextStyle(
                                     package: 'awesome_card',
@@ -121,7 +128,7 @@ class CardFrontLayout {
                           ),
                           Text(
                             cardHolderName == null || cardHolderName!.isEmpty
-                                ? 'Nome do Titular'
+                                ? textName!
                                 : cardHolderName!,
                             style: TextStyle(
                                 package: 'awesome_card',

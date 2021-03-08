@@ -23,25 +23,32 @@ class CreditCard extends StatefulWidget {
   final double? width;
   final double? height;
 
-  CreditCard(
-      {Key? key,
-      this.cardNumber,
-      this.cardExpiry,
-      this.cardHolderName,
-      this.bankName = '',
-      this.cvv,
-      this.showBackSide = false,
-      required this.frontBackground,
-      required this.backBackground,
-      this.cardType,
-      this.frontLayout,
-      this.backLayout,
-      this.frontTextColor = Colors.white,
-      this.backTextColor = Colors.black,
-      this.showShadow = false,
-      this.width,
-      this.height})
-      : super(key: key);
+  final String? textExpDate;
+  final String? textName;
+  final String? textExpiry;
+
+  CreditCard({
+    Key? key,
+    this.cardNumber,
+    this.cardExpiry,
+    this.cardHolderName,
+    this.bankName = '',
+    this.cvv,
+    this.showBackSide = false,
+    required this.frontBackground,
+    required this.backBackground,
+    this.cardType,
+    this.frontLayout,
+    this.backLayout,
+    this.frontTextColor = Colors.white,
+    this.backTextColor = Colors.black,
+    this.showShadow = false,
+    this.width,
+    this.height,
+    this.textExpDate = 'Exp. Date',
+    this.textExpiry = 'MM/YY',
+    this.textName = 'Card Holder',
+  }) : super(key: key);
 
   @override
   _CreditCardState createState() => _CreditCardState();
@@ -153,6 +160,9 @@ class _CreditCardState extends State<CreditCard>
             // Front Side Layout
             widget.frontLayout ??
                 CardFrontLayout(
+                        textExpDate: widget.textExpDate,
+                        textExpiry: widget.textExpiry,
+                        textName: widget.textName,
                         bankName: widget.bankName,
                         cardNumber: widget.cardNumber,
                         cardExpiry: widget.cardExpiry,
