@@ -7,5 +7,6 @@ enum CardType {
   maestro,
   rupay,
   visa,
+  elo,
   other
 }
