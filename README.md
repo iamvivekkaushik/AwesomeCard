@@ -49,6 +49,9 @@ CreditCard(
     frontBackground: CardBackgrounds.black,
     backBackground: CardBackgrounds.white,
     showShadow: true,
+    textExpDate: 'Exp. Date',
+    textName: 'Name',
+    textExpiry: 'MM/YY'
 ),
 ```
 
