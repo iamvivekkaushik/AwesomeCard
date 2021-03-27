@@ -66,9 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 40,
             ),
             CreditCard(
-              textExpDate: 'Validade',
-              textName: 'Nome do Titular',
-              textExpiry: 'MM/AA',
               cardNumber: cardNumber,
               cardExpiry: expiryDate,
               cardHolderName: cardHolderName,
