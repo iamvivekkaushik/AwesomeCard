@@ -26,6 +26,7 @@ class CreditCard extends StatefulWidget {
   final String? textExpDate;
   final String? textName;
   final String? textExpiry;
+  final double horizontalMargin;
 
   CreditCard({
     Key? key,
@@ -48,6 +49,7 @@ class CreditCard extends StatefulWidget {
     this.textExpDate = 'Exp. Date',
     this.textExpiry = 'MM/YY',
     this.textName = 'Card Holder',
+    this.horizontalMargin = 20,
   }) : super(key: key);
 
   @override
@@ -132,7 +134,7 @@ class _CreditCardState extends State<CreditCard>
 
   Widget _buildFrontCard() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: EdgeInsets.symmetric(horizontal: widget.horizontalMargin),
       width: cardWidth,
       height: cardHeight,
       decoration: BoxDecoration(
@@ -182,7 +184,7 @@ class _CreditCardState extends State<CreditCard>
 
   Widget _buildBackCard() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: EdgeInsets.symmetric(horizontal: widget.horizontalMargin),
       width: cardWidth,
       height: cardHeight,
       decoration: BoxDecoration(
