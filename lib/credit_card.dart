@@ -54,8 +54,7 @@ class CreditCard extends StatefulWidget {
   _CreditCardState createState() => _CreditCardState();
 }
 
-class _CreditCardState extends State<CreditCard>
-    with SingleTickerProviderStateMixin {
+class _CreditCardState extends State<CreditCard> with SingleTickerProviderStateMixin {
   double? cardWidth;
   double? cardHeight;
   late AnimationController _controller;
@@ -64,16 +63,11 @@ class _CreditCardState extends State<CreditCard>
 
   @override
   void initState() {
-    _controller = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
+    _controller = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
 
     _moveToBack = TweenSequence<double>([
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0.0, end: pi / 2)
-              .chain(CurveTween(curve: Curves.easeInBack)),
-          weight: 50.0),
-      TweenSequenceItem<double>(
-          tween: ConstantTween<double>(pi / 2), weight: 50.0)
+      TweenSequenceItem<double>(tween: Tween<double>(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeInBack)), weight: 50.0),
+      TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50.0)
     ]).animate(_controller);
 
     _moveToFront = TweenSequence<double>(
@@ -83,8 +77,7 @@ class _CreditCardState extends State<CreditCard>
           weight: 50.0,
         ),
         TweenSequenceItem<double>(
-          tween: Tween<double>(begin: -pi / 2, end: 0.0)
-              .chain(CurveTween(curve: Curves.easeOutBack)),
+          tween: Tween<double>(begin: -pi / 2, end: 0.0).chain(CurveTween(curve: Curves.easeOutBack)),
           weight: 50.0,
         ),
       ],
@@ -101,12 +94,8 @@ class _CreditCardState extends State<CreditCard>
 
   @override
   Widget build(BuildContext context) {
-    widget.width == null
-        ? cardWidth = MediaQuery.of(context).size.width - 40
-        : cardWidth = widget.width;
-    widget.height == null
-        ? cardHeight = (cardWidth! / 2) + 10
-        : cardHeight = widget.height;
+    widget.width == null ? cardWidth = MediaQuery.of(context).size.width : cardWidth = widget.width;
+    widget.height == null ? cardHeight = (cardWidth! / 2) + 10 : cardHeight = widget.height;
 
     if (widget.showBackSide) {
       _controller.forward().orCancel;
@@ -132,7 +121,6 @@ class _CreditCardState extends State<CreditCard>
 
   Widget _buildFrontCard() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
       width: cardWidth,
       height: cardHeight,
       decoration: BoxDecoration(
@@ -167,9 +155,7 @@ class _CreditCardState extends State<CreditCard>
                         cardNumber: widget.cardNumber,
                         cardExpiry: widget.cardExpiry,
                         cardHolderName: widget.cardHolderName,
-                        cardTypeIcon: getCardTypeIcon(
-                            cardType: widget.cardType,
-                            cardNumber: widget.cardNumber),
+                        cardTypeIcon: getCardTypeIcon(cardType: widget.cardType, cardNumber: widget.cardNumber),
                         cardHeight: cardHeight,
                         cardWidth: cardWidth,
                         textColor: widget.frontTextColor)
@@ -182,7 +168,6 @@ class _CreditCardState extends State<CreditCard>
 
   Widget _buildBackCard() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
       width: cardWidth,
       height: cardHeight,
       decoration: BoxDecoration(
@@ -208,13 +193,7 @@ class _CreditCardState extends State<CreditCard>
             widget.backBackground,
 
             // Back Side Layout
-            widget.backLayout ??
-                CardBackLayout(
-                        cvv: widget.cvv,
-                        width: cardWidth,
-                        height: cardHeight,
-                        color: widget.backTextColor)
-                    .layout1()
+            widget.backLayout ?? CardBackLayout(cvv: widget.cvv, width: cardWidth, height: cardHeight, color: widget.backTextColor).layout1()
           ],
         ),
       ),
