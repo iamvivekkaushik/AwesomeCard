@@ -111,9 +111,9 @@ class _CreditCardState extends State<CreditCard>
         : cardHeight = widget.height;
 
     if (widget.showBackSide) {
-      _controller.forward().orCancel;
+      _controller.forward();
     } else {
-      _controller.reverse().orCancel;
+      _controller.reverse();
     }
 
     return Center(
