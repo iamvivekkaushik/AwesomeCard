@@ -26,6 +26,7 @@ class CreditCard extends StatefulWidget {
   final String? textExpDate;
   final String? textName;
   final String? textExpiry;
+  final String mask;
   final double horizontalMargin;
 
   CreditCard({
@@ -49,6 +50,7 @@ class CreditCard extends StatefulWidget {
     this.textExpDate = 'Exp. Date',
     this.textExpiry = 'MM/YY',
     this.textName = 'Card Holder',
+    this.mask = 'XXXX XXXX XXXX XXXX',
     this.horizontalMargin = 20,
   }) : super(key: key);
 
@@ -162,20 +164,20 @@ class _CreditCardState extends State<CreditCard>
             // Front Side Layout
             widget.frontLayout ??
                 CardFrontLayout(
-                        textExpDate: widget.textExpDate,
-                        textExpiry: widget.textExpiry,
-                        textName: widget.textName,
-                        bankName: widget.bankName,
-                        cardNumber: widget.cardNumber,
-                        cardExpiry: widget.cardExpiry,
-                        cardHolderName: widget.cardHolderName,
-                        cardTypeIcon: getCardTypeIcon(
-                            cardType: widget.cardType,
-                            cardNumber: widget.cardNumber),
-                        cardHeight: cardHeight,
-                        cardWidth: cardWidth,
-                        textColor: widget.frontTextColor)
-                    .layout1(),
+                  textExpDate: widget.textExpDate,
+                  textExpiry: widget.textExpiry,
+                  textName: widget.textName,
+                  bankName: widget.bankName,
+                  cardNumber: widget.cardNumber,
+                  cardExpiry: widget.cardExpiry,
+                  cardHolderName: widget.cardHolderName,
+                  cardTypeIcon: getCardTypeIcon(
+                      cardType: widget.cardType, cardNumber: widget.cardNumber),
+                  cardHeight: cardHeight,
+                  cardWidth: cardWidth,
+                  textColor: widget.frontTextColor,
+                  mask: widget.mask,
+                ).layout1(),
           ],
         ),
       ),
@@ -236,6 +238,7 @@ class AwesomeCard extends StatelessWidget {
       animation: animation!,
       builder: (BuildContext context, Widget? child) {
         return Transform(
+          // https://blog.codemagic.io/flutter-matrix4-perspective-transformations/
           transform: Matrix4.identity()
             ..setEntry(3, 2, 0.001)
             ..rotateY(animation!.value),

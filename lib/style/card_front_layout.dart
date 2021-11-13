@@ -13,19 +13,22 @@ class CardFrontLayout {
   String? textExpDate;
   String? textName;
   String? textExpiry;
+  final String mask;
 
-  CardFrontLayout(
-      {this.bankName = '',
-      this.cardNumber = '',
-      this.cardExpiry = '',
-      this.cardHolderName = '',
-      this.textExpDate = 'Exp. Date',
-      this.textExpiry = 'MM/YY',
-      this.textName = 'Card Holder',
-      this.cardTypeIcon,
-      this.cardWidth = 0,
-      this.cardHeight = 0,
-      this.textColor});
+  CardFrontLayout({
+    this.bankName = '',
+    this.cardNumber = '',
+    this.cardExpiry = '',
+    this.cardHolderName = '',
+    this.textExpDate = 'Exp. Date',
+    this.textExpiry = 'MM/YY',
+    this.textName = 'Card Holder',
+    required this.mask,
+    this.cardTypeIcon,
+    this.cardWidth = 0,
+    this.cardHeight = 0,
+    this.textColor,
+  });
 
   Widget layout1() {
     return Padding(
@@ -83,14 +86,15 @@ class CardFrontLayout {
                         children: <Widget>[
                           Text(
                             cardNumber == null || cardNumber!.isEmpty
-                                ? 'XXXX XXXX XXXX XXXX'
+                                ? mask
                                 : cardNumber!,
                             style: TextStyle(
-                                package: 'awesome_card',
-                                color: textColor,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'MavenPro',
-                                fontSize: 22),
+                              package: 'awesome_card',
+                              color: textColor,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'MavenPro',
+                              fontSize: 22,
+                            ),
                           ),
                           SizedBox(
                             height: 15,

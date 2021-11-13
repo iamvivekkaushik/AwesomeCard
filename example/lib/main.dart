@@ -75,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
               frontBackground: CardBackgrounds.black,
               backBackground: CardBackgrounds.white,
               showShadow: true,
+              // mask: 'XXXX XXXXXX XXXXXX',
             ),
             SizedBox(
               height: 40,
