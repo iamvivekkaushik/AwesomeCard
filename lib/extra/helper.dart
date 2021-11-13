@@ -71,6 +71,51 @@ Widget getCardTypeIcon({CardType? cardType, String? cardNumber}) {
   }
 }
 
+/// https://baymard.com/checkout-usability/credit-card-patterns
+String getCardTypeMask({CardType? cardType, String? cardNumber}) {
+  final trimmedCardLength = cardNumber?.replaceAll(' ', '').length;
+  switch (cardType ?? getCardType(cardNumber!)) {
+    case CardType.americanExpress:
+      return 'XXXX XXXXXX XXXXX';
+
+    case CardType.dinersClub:
+      if (trimmedCardLength == 14) {
+        return 'XXXX XXXXXX XXXX';
+      }
+      return 'XXXX XXXX XXXX XXXX';
+
+    case CardType.discover:
+      return 'XXXX XXXX XXXX XXXX';
+
+    case CardType.jcb:
+      return 'XXXX XXXX XXXX XXXX';
+
+    case CardType.masterCard:
+      return 'XXXX XXXX XXXX XXXX';
+
+    case CardType.maestro:
+      if (trimmedCardLength == 13) {
+        return 'XXXX XXXX XXXXX';
+      } else if (trimmedCardLength == 15) {
+        return 'XXXX XXXXXX XXXXX';
+      } else if (trimmedCardLength == 19) {
+        return 'XXXX XXXX XXXX XXXX XXX';
+      }
+      return 'XXXX XXXX XXXX XXXX';
+
+    case CardType.rupay:
+      return 'XXXX XXXX XXXX XXXX';
+
+    case CardType.visa:
+      return 'XXXX XXXX XXXX XXXX';
+
+    case CardType.elo:
+      return 'XXXX XXXX XXXX XXXX';
+    default:
+      return 'XXXX XXXX XXXX XXXX';
+  }
+}
+
 CardType getCardType(String cardNumber) {
   final rAmericanExpress = RegExp(r'^3[47][0-9]{0,}$');
   final rDinersClub = RegExp(r'^3(?:0[0-59]{1}|[689])[0-9]{0,}$');

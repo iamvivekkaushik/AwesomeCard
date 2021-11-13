@@ -26,7 +26,7 @@ class CreditCard extends StatefulWidget {
   final String? textExpDate;
   final String? textName;
   final String? textExpiry;
-  final String mask;
+  final String? mask;
   final double horizontalMargin;
 
   CreditCard({
@@ -50,7 +50,7 @@ class CreditCard extends StatefulWidget {
     this.textExpDate = 'Exp. Date',
     this.textExpiry = 'MM/YY',
     this.textName = 'Card Holder',
-    this.mask = 'XXXX XXXX XXXX XXXX',
+    this.mask,
     this.horizontalMargin = 20,
   }) : super(key: key);
 
@@ -176,7 +176,11 @@ class _CreditCardState extends State<CreditCard>
                   cardHeight: cardHeight,
                   cardWidth: cardWidth,
                   textColor: widget.frontTextColor,
-                  mask: widget.mask,
+                  mask: widget.mask ??
+                      getCardTypeMask(
+                        cardType: widget.cardType,
+                        cardNumber: widget.cardNumber,
+                      ),
                 ).layout1(),
           ],
         ),
