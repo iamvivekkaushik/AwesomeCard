@@ -1,3 +1,10 @@
+## [1.1.5] - 23/03/2021
+
+* Migrated to Null Safety
+* Fixed issue with Card Transformation on flutter web
+* Added option to override text label (Temporary)
+* Added Elo Cards
+
 ## [1.1.0] - 24/01/2020
 
 * Added Option to override Card Provider Icon

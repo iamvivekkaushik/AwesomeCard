@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -26,18 +26,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String cardNumber = "";
-  String cardHolderName = "";
-  String expiryDate = "";
-  String cvv = "";
+  String cardNumber = '';
+  String cardHolderName = '';
+  String expiryDate = '';
+  String cvv = '';
   bool showBack = false;
 
-  FocusNode _focusNode;
+  late FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
-    _focusNode = new FocusNode();
+    _focusNode = FocusNode();
     _focusNode.addListener(() {
       setState(() {
         _focusNode.hasFocus ? showBack = true : showBack = false;
@@ -70,16 +70,16 @@ class _MyHomePageState extends State<MyHomePage> {
               cardExpiry: expiryDate,
               cardHolderName: cardHolderName,
               cvv: cvv,
-              bankName: "Axis Bank",
+              bankName: 'Axis Bank',
               showBackSide: showBack,
               frontBackground: CardBackgrounds.black,
               backBackground: CardBackgrounds.white,
               showShadow: true,
+              // mask: getCardTypeMask(cardType: CardType.americanExpress),
             ),
             SizedBox(
               height: 40,
             ),
-
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     horizontal: 20,
                   ),
                   child: TextFormField(
-                    decoration: InputDecoration(hintText: "Card Number"),
+                    decoration: InputDecoration(hintText: 'Card Number'),
                     maxLength: 19,
                     onChanged: (value) {
                       setState(() {
@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     horizontal: 20,
                   ),
                   child: TextFormField(
-                    decoration: InputDecoration(hintText: "Card Expiry"),
+                    decoration: InputDecoration(hintText: 'Card Expiry'),
                     maxLength: 5,
                     onChanged: (value) {
                       setState(() {
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     horizontal: 20,
                   ),
                   child: TextFormField(
-                    decoration: InputDecoration(hintText: "Card Holder Name"),
+                    decoration: InputDecoration(hintText: 'Card Holder Name'),
                     onChanged: (value) {
                       setState(() {
                         cardHolderName = value;
@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                   child: TextFormField(
-                    decoration: InputDecoration(hintText: "CVV"),
+                    decoration: InputDecoration(hintText: 'CVV'),
                     maxLength: 3,
                     onChanged: (value) {
                       setState(() {
