@@ -43,9 +43,10 @@ class CardBackLayout {
                   child: Text(
                     cvv.toString(),
                     style: TextStyle(
-                        fontSize: 21,
-                        fontWeight: FontWeight.w500,
-                        color: color),
+                      fontSize: 21,
+                      fontWeight: FontWeight.w500,
+                      color: color,
+                    ),
                   ),
                 ),
               ),

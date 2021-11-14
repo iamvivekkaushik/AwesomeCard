@@ -106,7 +106,8 @@ class _CreditCardState extends State<CreditCard>
   @override
   Widget build(BuildContext context) {
     widget.width == null
-        ? cardWidth = MediaQuery.of(context).size.width - 40
+        ? cardWidth =
+            MediaQuery.of(context).size.width - (2 * widget.horizontalMargin)
         : cardWidth = widget.width;
     widget.height == null
         ? cardHeight = (cardWidth! / 2) + 10

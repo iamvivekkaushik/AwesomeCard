@@ -1,3 +1,10 @@
+## [1.1.6] - 14/11/2021
+
+* Customize horizontal margin
+* Fixed pixel overflow
+* Customize card mask
+* Custom card color helper method
+
 ## [1.1.5] - 23/03/2021
 
 * Migrated to Null Safety
