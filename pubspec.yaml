@@ -37,15 +37,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-   - family: MavenPro
-     fonts:
-       - asset: fonts/MavenPro-Regular.ttf
-         weight: 400
-       - asset: fonts/MavenPro-Medium.ttf
-         weight: 500
-       - asset: fonts/MavenPro-Bold.ttf
-         weight: 700
-#   - family: Trajan Pro
+    - family: MavenPro
+      fonts:
+        - asset: fonts/MavenPro-Regular.ttf
+          weight: 400
+        - asset: fonts/MavenPro-Medium.ttf
+          weight: 500
+        - asset: fonts/MavenPro-Bold.ttf
+          weight: 700
+  #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
