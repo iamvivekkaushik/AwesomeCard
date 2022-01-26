@@ -75,75 +75,85 @@ class CardFrontLayout {
             child: Align(
               alignment: Alignment.bottomLeft,
               child: Container(
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.end,
+                      Text(
+                        cardNumber == null || cardNumber!.isEmpty
+                            ? mask
+                            : cardNumber!,
+                        style: TextStyle(
+                          package: 'awesome_card',
+                          color: textColor,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'MavenPro',
+                          fontSize: 22,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            cardNumber == null || cardNumber!.isEmpty
-                                ? mask
-                                : cardNumber!,
+                            textExpDate!,
                             style: TextStyle(
-                              package: 'awesome_card',
-                              color: textColor,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'MavenPro',
-                              fontSize: 22,
-                            ),
+                                package: 'awesome_card',
+                                color: textColor,
+                                fontFamily: 'MavenPro',
+                                fontSize: 15),
                           ),
                           SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                textExpDate!,
-                                style: TextStyle(
-                                    package: 'awesome_card',
-                                    color: textColor,
-                                    fontFamily: 'MavenPro',
-                                    fontSize: 15),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                cardExpiry == null || cardExpiry!.isEmpty
-                                    ? textExpiry!
-                                    : cardExpiry!,
-                                style: TextStyle(
-                                    package: 'awesome_card',
-                                    color: textColor,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: 'MavenPro',
-                                    fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
+                            width: 10,
                           ),
                           Text(
-                            cardHolderName == null || cardHolderName!.isEmpty
-                                ? textName!
-                                : cardHolderName!,
+                            cardExpiry == null || cardExpiry!.isEmpty
+                                ? textExpiry!
+                                : cardExpiry!,
                             style: TextStyle(
                                 package: 'awesome_card',
                                 color: textColor,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: 'MavenPro',
-                                fontSize: 17),
+                                fontSize: 16),
                           ),
                         ],
                       ),
-                      cardTypeIcon!
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            flex: 7, // 60% of space => (6/(6 + 4))
+                            child: Text(
+                              cardHolderName == null || cardHolderName!.isEmpty
+                                  ? textName!
+                                  : cardHolderName!,
+                              style: TextStyle(
+                                package: 'awesome_card',
+                                color: textColor,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'MavenPro',
+                                fontSize: 17,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10,),
+                          Expanded(
+                              flex: 2, // 40% of space
+                              child: cardTypeIcon != null
+                                  ? cardTypeIcon!
+                                  : SizedBox(
+                                      width: 10,
+                                    )),
+                        ],
+                      ),
                     ]),
               ),
             ),
