@@ -111,7 +111,7 @@ class _CreditCardState extends State<CreditCard>
             MediaQuery.of(context).size.width - (2 * widget.horizontalMargin)
         : cardWidth = widget.width;
     widget.height == null
-        ? cardHeight = (cardWidth! / 2) + 10
+        ? cardHeight = (cardWidth! / 2) + 24
         : cardHeight = widget.height;
 
     if (widget.showBackSide) {
