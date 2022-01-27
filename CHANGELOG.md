@@ -1,3 +1,7 @@
+## [1.1.7] - 27/01/2022
+
+* Fixed overflow issue with customer name
+
 ## [1.1.6] - 14/11/2021
 
 * Customize horizontal margin

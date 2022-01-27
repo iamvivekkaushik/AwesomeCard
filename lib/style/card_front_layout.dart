@@ -144,7 +144,9 @@ class CardFrontLayout {
                               ),
                             ),
                           ),
-                          SizedBox(width: 10,),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Expanded(
                               flex: 2, // 40% of space
                               child: cardTypeIcon != null
