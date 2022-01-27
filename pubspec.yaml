@@ -5,6 +5,7 @@ homepage: https://github.com/iamvivekkaushik/AwesomeCard
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
@@ -45,11 +46,6 @@ flutter:
           weight: 500
         - asset: fonts/MavenPro-Bold.ttf
           weight: 700
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages

@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:awesome_card/awesome_card.dart';
 
@@ -33,6 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
   bool showBack = false;
 
   late FocusNode _focusNode;
+  TextEditingController cardNumberCtrl = TextEditingController();
+  TextEditingController expiryFieldCtrl = TextEditingController();
 
   @override
   void initState() {
@@ -89,11 +92,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     horizontal: 20,
                   ),
                   child: TextFormField(
+                    controller: cardNumberCtrl,
                     decoration: InputDecoration(hintText: 'Card Number'),
-                    maxLength: 19,
+                    maxLength: 16,
                     onChanged: (value) {
+                      final newCardNumber = value.trim();
+                      var newStr = '';
+                      final step = 4;
+
+                      for (var i = 0; i < newCardNumber.length; i += step) {
+                        newStr += newCardNumber.substring(
+                            i, math.min(i + step, newCardNumber.length));
+                        if (i + step < newCardNumber.length) newStr += ' ';
+                      }
+
                       setState(() {
-                        cardNumber = value;
+                        cardNumber = newStr;
                       });
                     },
                   ),
@@ -103,11 +117,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     horizontal: 20,
                   ),
                   child: TextFormField(
+                    controller: expiryFieldCtrl,
                     decoration: InputDecoration(hintText: 'Card Expiry'),
                     maxLength: 5,
                     onChanged: (value) {
+                      var newDateValue = value.trim();
+                      final isPressingBackspace =
+                          expiryDate.length > newDateValue.length;
+                      final containsSlash = newDateValue.contains('/');
+
+                      if (newDateValue.length >= 2 &&
+                          !containsSlash &&
+                          !isPressingBackspace) {
+                        newDateValue = newDateValue.substring(0, 2) +
+                            '/' +
+                            newDateValue.substring(2);
+                      }
                       setState(() {
-                        expiryDate = value;
+                        expiryFieldCtrl.text = newDateValue;
+                        expiryFieldCtrl.selection = TextSelection.fromPosition(
+                            TextPosition(offset: newDateValue.length));
+                        expiryDate = newDateValue;
                       });
                     },
                   ),

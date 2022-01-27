@@ -1,8 +1,9 @@
 import 'dart:math';
 
-import 'package:awesome_card/awesome_card.dart';
+import 'package:awesome_card/extra/card_type.dart';
 import 'package:awesome_card/extra/helper.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:awesome_card/style/card_back_layout.dart';
+import 'package:awesome_card/style/card_front_layout.dart';
 import 'package:flutter/material.dart';
 
 class CreditCard extends StatefulWidget {
@@ -110,7 +111,7 @@ class _CreditCardState extends State<CreditCard>
             MediaQuery.of(context).size.width - (2 * widget.horizontalMargin)
         : cardWidth = widget.width;
     widget.height == null
-        ? cardHeight = (cardWidth! / 2) + 10
+        ? cardHeight = (cardWidth! / 2) + 24
         : cardHeight = widget.height;
 
     if (widget.showBackSide) {
