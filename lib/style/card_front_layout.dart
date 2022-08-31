@@ -14,6 +14,7 @@ class CardFrontLayout {
   String? textName;
   String? textExpiry;
   final String mask;
+  bool? isContactless;
 
   CardFrontLayout({
     this.bankName = '',
@@ -28,6 +29,7 @@ class CardFrontLayout {
     this.cardWidth = 0,
     this.cardHeight = 0,
     this.textColor,
+    this.isContactless = true,
   });
 
   Widget layout1() {
@@ -56,19 +58,20 @@ class CardFrontLayout {
                   ),
                 ),
               ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Image.asset(
-                    'images/contactless_icon.png',
-                    fit: BoxFit.fitHeight,
-                    width: 30.0,
-                    height: 30.0,
-                    color: textColor,
-                    package: 'awesome_card',
+              if(isContactless ?? true)
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Image.asset(
+                      'images/contactless_icon.png',
+                      fit: BoxFit.fitHeight,
+                      width: 30.0,
+                      height: 30.0,
+                      color: textColor,
+                      package: 'awesome_card',
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
           Expanded(

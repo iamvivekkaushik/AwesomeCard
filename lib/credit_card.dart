@@ -23,6 +23,7 @@ class CreditCard extends StatefulWidget {
   final CardType? cardType;
   final double? width;
   final double? height;
+  final bool? isContactless;
 
   final String? textExpDate;
   final String? textName;
@@ -53,6 +54,7 @@ class CreditCard extends StatefulWidget {
     this.textName = 'Card Holder',
     this.mask,
     this.horizontalMargin = 20,
+    this.isContactless = true,
   }) : super(key: key);
 
   @override
@@ -183,6 +185,7 @@ class _CreditCardState extends State<CreditCard>
                         cardType: widget.cardType,
                         cardNumber: widget.cardNumber,
                       ),
+                  isContactless: widget.isContactless,
                 ).layout1(),
           ],
         ),
