@@ -19,12 +19,12 @@ jobs:
       # Setup Dart SDK with JWT token
       - uses: dart-lang/setup-dart@v1
 
-      # Install Flutter (pinned to the version the package is tested with)
+      # Install Flutter (pinned; keep in sync with test.yml)
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.38.10'
+          flutter-version: '3.47.1'
 
       # Get dependencies
       - name: Install Flutter Packages

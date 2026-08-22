@@ -179,6 +179,75 @@ void main() {
     });
   });
 
+  group('custom brands (PR #16 reimplementation)', () {
+    final troy = CardBrand(
+      name: 'troy',
+      icon: const Icon(Icons.star, key: Key('troy-icon')),
+      pattern: RegExp(r'^9792'),
+      mask: 'XXXX XXXX XXXX XXXX',
+    );
+    final noMaskBrand = CardBrand(
+      name: 'nomask',
+      icon: const SizedBox(),
+      pattern: RegExp(r'^1234'),
+    );
+
+    test('matchCustomBrand matches with spaces ignored', () {
+      expect(matchCustomBrand('9792 1111 2222 3333', [troy]), troy);
+      expect(matchCustomBrand('4111111111111111', [troy]), isNull);
+      expect(matchCustomBrand('', [troy]), isNull);
+      expect(matchCustomBrand(null, [troy]), isNull);
+      expect(matchCustomBrand('97921111', null), isNull);
+    });
+
+    test('custom brand wins over built-in detection for icon and mask', () {
+      // 9792… would otherwise fall through to Maestro (starts with 9? no —
+      // starts with 9 matches nothing built-in, so `other`).
+      final icon = getCardTypeIcon(cardNumber: '9792111122223333', customBrands: [troy]);
+      expect((icon as Icon).key, const Key('troy-icon'));
+      expect(getCardTypeMask(cardNumber: '9792111122223333', customBrands: [troy]),
+          'XXXX XXXX XXXX XXXX');
+    });
+
+    test('explicit cardType overrides custom brands', () {
+      final icon = getCardTypeIcon(
+          cardType: CardType.visa,
+          cardNumber: '9792111122223333',
+          customBrands: [troy]);
+      expect(icon, isNot(isA<Icon>()));
+      expect(
+          getCardTypeMask(
+              cardType: CardType.americanExpress,
+              cardNumber: '9792111122223333',
+              customBrands: [troy]),
+          'XXXX XXXXXX XXXXX');
+    });
+
+    test('brand without mask falls back to the default mask', () {
+      expect(getCardTypeMask(cardNumber: '1234567890123456', customBrands: [noMaskBrand]),
+          'XXXX XXXX XXXX XXXX');
+    });
+
+    test('non-matching custom brands leave built-in detection intact', () {
+      expect(getCardType('4111111111111111'), CardType.visa);
+      final icon = getCardTypeIcon(cardNumber: '4111111111111111', customBrands: [troy]);
+      expect(icon, isA<Image>());
+    });
+
+    testWidgets('CreditCard renders a matching custom brand icon',
+        (tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: CreditCard(
+          cardNumber: '9792 1111 2222 3333',
+          customBrands: [troy],
+          frontBackground: CardBackgrounds.black,
+          backBackground: CardBackgrounds.white,
+        ),
+      ));
+      expect(find.byKey(const Key('troy-icon')), findsOneWidget);
+    });
+  });
+
   group('flip animation', () {
     testWidgets('static child subtree is not rebuilt per frame',
         (tester) async {

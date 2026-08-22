@@ -211,6 +211,31 @@ Widget icon  = getCardTypeIcon(cardNumber: '5555555555554444'); // Mastercard lo
 To force a specific brand regardless of the number, pass `cardType`. To force
 a specific mask, pass `mask`.
 
+### Custom brands
+
+Brands the package doesn't ship (regional or store cards) can be registered
+via `customBrands`. They are checked before the built-in detection and
+support their own icon and optional number mask:
+
+```dart
+CreditCard(
+  cardNumber: cardNumber,
+  customBrands: [
+    CardBrand(
+      name: 'troy',
+      icon: Image.asset('assets/troy.png', width: 55, height: 40),
+      pattern: RegExp(r'^9792'),
+      mask: 'XXXX XXXX XXXX XXXX', // optional
+    ),
+  ],
+  frontBackground: CardBackgrounds.black,
+  backBackground: CardBackgrounds.white,
+)
+```
+
+Precedence: explicit `cardType` → `customBrands` (first match wins) →
+built-in detection.
+
 ## 📖 Parameter reference
 
 | Parameter | Type | Default | Description |
@@ -223,6 +248,7 @@ a specific mask, pass `mask`.
 | `cvv` | `String?` | — | CVV shown on the back side |
 | `bankName` | `String` | `''` | Bank name shown at the top of the front |
 | `cardType` | `CardType?` | auto | Override the auto-detected brand |
+| `customBrands` | `List<CardBrand>?` | — | Custom brands checked before built-in detection |
 | `mask` | `String?` | auto | Override the auto-selected number mask |
 | `showBackSide` | `bool` | `false` | Which side is visible; changing it animates the flip |
 | `showShadow` | `bool` | `false` | Drop shadow behind the card |

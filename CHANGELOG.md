@@ -8,6 +8,7 @@
 * `CardBackgrounds.custom` parameter is now typed as `int` (was dynamic, crashed at runtime on wrong type)
 * Card type detection regexes are compiled once instead of on every rebuild
 * Added text style customization: `bankNameTextStyle`, `cardNumberTextStyle`, `cardExpiryTextStyle`, `cardHolderNameTextStyle`, `cvvTextStyle` (#4)
+* Added `customBrands` — register your own `CardBrand` (icon, regex pattern, optional mask) for brands the package doesn't ship; checked before built-in detection (idea from #16 by @marciioluucas)
 * Modernized the example's Android project: declarative Flutter Gradle plugin, AGP 8.11.1, Kotlin 2.2.20, Gradle 8.14, mavenCentral instead of the dead jcenter (#11)
 * Added a regression test suite; fixed the stale example test
 * Updated CI publish workflow to current GitHub Actions and pub commands

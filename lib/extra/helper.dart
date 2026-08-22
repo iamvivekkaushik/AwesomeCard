@@ -1,3 +1,4 @@
+import 'package:awesome_card/extra/card_brand.dart';
 import 'package:awesome_card/extra/card_type.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,34 @@ final RegExp _rElo = RegExp(
 // Discover cards that also match RuPay's `60` prefix start with 6011.
 final RegExp _rDiscover6011 = RegExp(r'^6011');
 
-Widget getCardTypeIcon({CardType? cardType, String? cardNumber}) {
+/// Returns the first custom brand whose pattern matches [cardNumber]
+/// (spaces ignored), or null when there is no match.
+CardBrand? matchCustomBrand(String? cardNumber, List<CardBrand>? brands) {
+  if (brands == null || brands.isEmpty) {
+    return null;
+  }
+  final number = cardNumber?.trim().replaceAll(' ', '') ?? '';
+  if (number.isEmpty) {
+    return null;
+  }
+  for (final brand in brands) {
+    if (brand.pattern.hasMatch(number)) {
+      return brand;
+    }
+  }
+  return null;
+}
+
+Widget getCardTypeIcon(
+    {CardType? cardType, String? cardNumber, List<CardBrand>? customBrands}) {
+  // An explicit cardType always wins; custom brands are consulted next,
+  // before the built-in detection.
+  if (cardType == null) {
+    final custom = matchCustomBrand(cardNumber, customBrands);
+    if (custom != null) {
+      return custom.icon;
+    }
+  }
   switch (cardType ?? getCardType(cardNumber ?? '')) {
     case CardType.americanExpress:
       return Image.asset(
@@ -90,7 +118,14 @@ Widget getCardTypeIcon({CardType? cardType, String? cardNumber}) {
 }
 
 /// https://baymard.com/checkout-usability/credit-card-patterns
-String getCardTypeMask({CardType? cardType, String? cardNumber}) {
+String getCardTypeMask(
+    {CardType? cardType, String? cardNumber, List<CardBrand>? customBrands}) {
+  if (cardType == null) {
+    final custom = matchCustomBrand(cardNumber, customBrands);
+    if (custom != null) {
+      return custom.mask ?? 'XXXX XXXX XXXX XXXX';
+    }
+  }
   final trimmedCardLength = cardNumber?.replaceAll(' ', '').length;
   switch (cardType ?? getCardType(cardNumber ?? '')) {
     case CardType.americanExpress:

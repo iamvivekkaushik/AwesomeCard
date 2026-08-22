@@ -79,7 +79,8 @@ class CardFrontLayout {
               Flexible(
                 child: Container(
                   height: 30,
-                  child: Center(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
                     child: Text(
                       bankName,
                       overflow: TextOverflow.ellipsis,

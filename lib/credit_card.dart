@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:awesome_card/extra/card_brand.dart';
 import 'package:awesome_card/extra/card_type.dart';
 import 'package:awesome_card/extra/helper.dart';
 import 'package:awesome_card/style/card_back_layout.dart';
@@ -21,6 +22,11 @@ class CreditCard extends StatefulWidget {
   final Widget? backLayout;
   final bool showShadow;
   final CardType? cardType;
+
+  /// Custom brands checked against [cardNumber] before the built-in
+  /// detection. Ignored when [cardType] is provided. Credit: originally
+  /// proposed in PR #16 by @marciioluucas.
+  final List<CardBrand>? customBrands;
   final double? width;
   final double? height;
   final bool? isContactless;
@@ -51,6 +57,7 @@ class CreditCard extends StatefulWidget {
     required this.frontBackground,
     required this.backBackground,
     this.cardType,
+    this.customBrands,
     this.frontLayout,
     this.backLayout,
     this.frontTextColor = Colors.white,
@@ -190,7 +197,9 @@ class _CreditCardState extends State<CreditCard>
                   cardExpiry: widget.cardExpiry,
                   cardHolderName: widget.cardHolderName,
                   cardTypeIcon: getCardTypeIcon(
-                      cardType: widget.cardType, cardNumber: widget.cardNumber),
+                      cardType: widget.cardType,
+                      cardNumber: widget.cardNumber,
+                      customBrands: widget.customBrands),
                   cardHeight: cardHeight,
                   cardWidth: cardWidth,
                   textColor: widget.frontTextColor,
@@ -198,6 +207,7 @@ class _CreditCardState extends State<CreditCard>
                       getCardTypeMask(
                         cardType: widget.cardType,
                         cardNumber: widget.cardNumber,
+                        customBrands: widget.customBrands,
                       ),
                   isContactless: widget.isContactless,
                   bankNameTextStyle: widget.bankNameTextStyle,

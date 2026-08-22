@@ -1,0 +1,37 @@
+name: Test
+
+on:
+  push:
+    branches: [dev, master]
+  pull_request:
+
+jobs:
+  test:
+    name: Analyze & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Keep in sync with publish.yml
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version: '3.47.1'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run package tests
+        run: flutter test
+
+      - name: Run example tests
+        working-directory: example
+        run: |
+          flutter pub get
+          flutter test
