@@ -15,7 +15,7 @@ class CardBackgrounds {
     color: Color(0xffF9F9FA),
   );
 
-  static Widget custom(color) {
+  static Widget custom(int color) {
     return Container(
       width: double.maxFinite,
       height: double.maxFinite,

@@ -5,10 +5,10 @@ import 'package:yaml/yaml.dart';
 
 void main(List<String> args) {
   print(args);
-  var pubspec = File('pubspec.yaml');
-  var content = loadYaml(pubspec.readAsStringSync()) as YamlMap;
+  final pubspec = File('pubspec.yaml');
+  final content = loadYaml(pubspec.readAsStringSync()) as YamlMap;
 
-  var pubspecVersion = content['version'] as String;
+  final pubspecVersion = content['version'] as String;
   var tagVersion = '';
   if (args.isNotEmpty) {
     tagVersion = args[0].split('/').last;

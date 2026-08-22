@@ -31,6 +31,15 @@ class CreditCard extends StatefulWidget {
   final String? mask;
   final double horizontalMargin;
 
+  /// Optional text style overrides. Each is merged over the default style of
+  /// its field, so partial overrides (e.g. only fontSize) keep the defaults
+  /// for everything else. Colors default to [frontTextColor]/[backTextColor].
+  final TextStyle? bankNameTextStyle;
+  final TextStyle? cardNumberTextStyle;
+  final TextStyle? cardExpiryTextStyle;
+  final TextStyle? cardHolderNameTextStyle;
+  final TextStyle? cvvTextStyle;
+
   CreditCard({
     Key? key,
     this.cardNumber,
@@ -55,6 +64,11 @@ class CreditCard extends StatefulWidget {
     this.mask,
     this.horizontalMargin = 20,
     this.isContactless = true,
+    this.bankNameTextStyle,
+    this.cardNumberTextStyle,
+    this.cardExpiryTextStyle,
+    this.cardHolderNameTextStyle,
+    this.cvvTextStyle,
   }) : super(key: key);
 
   @override
@@ -186,6 +200,10 @@ class _CreditCardState extends State<CreditCard>
                         cardNumber: widget.cardNumber,
                       ),
                   isContactless: widget.isContactless,
+                  bankNameTextStyle: widget.bankNameTextStyle,
+                  cardNumberTextStyle: widget.cardNumberTextStyle,
+                  cardExpiryTextStyle: widget.cardExpiryTextStyle,
+                  cardHolderNameTextStyle: widget.cardHolderNameTextStyle,
                 ).layout1(),
           ],
         ),
@@ -226,7 +244,8 @@ class _CreditCardState extends State<CreditCard>
                         cvv: widget.cvv,
                         width: cardWidth,
                         height: cardHeight,
-                        color: widget.backTextColor)
+                        color: widget.backTextColor,
+                        cvvTextStyle: widget.cvvTextStyle)
                     .layout1()
           ],
         ),

@@ -20,17 +20,13 @@ linter:
     - empty_statements
     - hash_and_equals
     - implementation_imports
-    - invariant_booleans
-    - iterable_contains_unrelated_type
     - library_names
     - library_prefixes
-    - list_remove_unrelated_type
     - literal_only_boolean_expressions
     - non_constant_identifier_names
     - one_member_abstracts
 #    - only_throw_errors
     - overridden_fields
-    - package_api_docs
     - package_names
     - package_prefixed_library_names
 #    - parameter_assignments # pegar um parametro e alterar seu valor
@@ -50,7 +46,6 @@ linter:
     - unnecessary_getters_setters
     - unrelated_type_equality_checks
     - valid_regexps
-    - always_require_non_null_named_parameters
     - avoid_null_checks_in_equality_operators
     - avoid_relative_lib_imports
     - avoid_shadowing_type_parameters
@@ -65,7 +60,6 @@ linter:
     - prefer_collection_literals
     - prefer_conditional_assignment
     - prefer_contains
-    - prefer_equal_for_default_values
     - prefer_for_elements_to_map_fromIterable
     - prefer_generic_function_type_aliases
     - prefer_if_null_operators
@@ -80,7 +74,6 @@ linter:
     - unnecessary_new
     - unnecessary_null_in_if_null_operators
     - unnecessary_this
-    - unsafe_html
     - use_full_hex_values_for_flutter_colors
     - use_function_type_syntax_for_parameters
     - use_rethrow_when_possible
